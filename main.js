@@ -51,29 +51,54 @@ function info (data) {
 
 
 function cards (array) {
-    
+    const frag = document.createDocumentFragment();
     const domDiv = document.querySelector('.mini-cards-conteiners');
-    
-    for (let i = 0; i <= 6; i++) {
-        let icono = array.days[i].icon;
+    let icono = array.days[1].icon;
+    const cardConteiner = document.createElement('article');
+    const detalles = document.createElement('div');
+    detalles.classList.add('detalles');
 
+
+    const home = document.createElement('section');
+    home.innerHTML = `<div>
+            <h1>📍🌍 ${array.city} (${array.country})</h1>
+        </div>
+        <main>
+            <div>
+                <img src=${`https://v5i.tutiempo.net/wi/01/40/${icono}.png`}>
+                <span>Max ${array.days[1].temperature_max}ºC</span>
+                <span>Min ${array.days[1].temperature_min}ºC</span>
+            </div>
+            <div>
+                <span>${array.days[1].text}</span>
+            </div>
+        </main>
+        `;
+
+        detalles.innerHTML = '';
+
+    for (let i = 0; i <= 6; i++) {
+        
+        icono = array.days[i].icon;
+        const card = document.createElement('div');
+        const detallesConteiner = document.createElement('section'); 
         
 
-        console.log(array)
-        const cards = document.createElement('div');
-        cards.classList.add('conteinerCards')
-        cards.innerHTML = `
-            <span><strong>${array.days[i].date}</strong></span>
-            <span>${array.days[i].text}</span>
-            <img src=${`https://v5i.tutiempo.net/wi/01/40/${icono}.png`}>
-        `;
-        domDiv.appendChild(cards);
+        detallesConteiner.appendChild(detalles);
+        domDiv.appendChild(detallesConteiner);
 
-        cards.addEventListener('click', ()=> {
-                
-            domDiv.innerHTML = '';
-            const detalles = document.createElement('div');
-            detalles.classList.add('detalles')
+
+        console.log(array)
+        cardConteiner.classList.add('conteinerCards')
+        card.innerHTML = `
+            <h3><strong>${array.days[i].date}</strong></h3>
+            <span>Max ${array.days[i].temperature_max}ºC</span>
+            <span>Min ${array.days[i].temperature_min}ºC</span>
+        `;
+        cardConteiner.appendChild(card);
+
+        card.addEventListener('click', ()=> {  
+
             detalles.innerHTML = `
             <span><strong>${array.days[i].date}</strong></span>
             <span>${array.days[i].text}</span>
@@ -83,10 +108,13 @@ function cards (array) {
             <span>Hd ${array.days[i].humidity}%</span>
             <span>Viento ${array.days[i].wind} km/h con dirección ${array.days[i].wind_direction}</span>
             `;
-            domDiv.appendChild(detalles);
+            detallesConteiner.appendChild(detalles);
+            domDiv.appendChild(detallesConteiner);
         })
-
     };
+    frag.append(home, cardConteiner);
+
+    domDiv.append(frag);
 };
 
 document.addEventListener('DOMContentLoaded', ()=> {
