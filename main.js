@@ -56,23 +56,24 @@ function cards (array) {
     let icono = array.days[1].icon;
     const cardConteiner = document.createElement('article');
     const detalles = document.createElement('div');
-    detalles.classList.add('detalles');
 
 
-    const home = document.createElement('section');
-    home.innerHTML = `<div>
+    const home = document.createElement('div');
+    home.classList.add('home');
+    home.innerHTML = `<div class="home-title">
             <h1>📍🌍 ${array.city} (${array.country})</h1>
         </div>
-        <main>
+        <main class="principal">
             <div>
                 <img src=${`https://v5i.tutiempo.net/wi/01/40/${icono}.png`}>
-                <span>Max ${array.days[1].temperature_max}ºC</span>
-                <span>Min ${array.days[1].temperature_min}ºC</span>
             </div>
             <div>
+                <span>Max ${array.days[1].temperature_max}ºC</span>
+                <span>Min ${array.days[1].temperature_min}ºC</span>
                 <span>${array.days[1].text}</span>
             </div>
         </main>
+        <div><h2>Pronóstico par los proximos 7 días</h2></div>
         `;
 
         detalles.innerHTML = '';
@@ -98,6 +99,7 @@ function cards (array) {
         cardConteiner.appendChild(card);
 
         card.addEventListener('click', ()=> {  
+            detalles.classList.add('detalles');
 
             detalles.innerHTML = `
             <span><strong>${array.days[i].date}</strong></span>
