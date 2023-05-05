@@ -1,5 +1,6 @@
 
-const apiKey = 'XCTazzX44qXgvMm'
+const apiKey = 'XCTazzX44qXgvMm';
+
 
 class datos {
     constructor(country,city,days) 
@@ -31,13 +32,15 @@ async function solicit (ll) {
     } catch (error) {
         console.log(error);
     }
-}
+};
+
+
 
 function info (data) {
     let array = new datos(
         data.locality.country,
         data.locality.name,
-        [data.day1, data.day2, data.day3, data.day4, data.day5, data.day6, data.day7]
+        [data.day1, data.day2, data.day3, data.day4, data.day5, data.day6, data.day7],
     );
     
 
@@ -46,35 +49,23 @@ function info (data) {
 };
 
 
+
 function cards (array) {
     
     const domDiv = document.querySelector('.mini-cards-conteiners');
     
     for (let i = 0; i <= 6; i++) {
+        let icono = array.days[i].icon;
 
-        let dias = '';
-        if (array.days[i] === array.days[0]) {
-            dias = 'Martes';
-        } else if (array.days[i] === array.days[1]) {
-            dias = 'Miercoles';
-        } else if (array.days[i] === array.days[2]) {
-            dias = 'Jueves';
-        } else if (array.days[i] === array.days[3]) {
-            dias = 'Viernes';
-        } else if (array.days[i] === array.days[4]) {
-            dias = 'Sabado';
-        } else if (array.days[i] === array.days[5]) {
-            dias = 'Domingo';
-        } else {
-            dias = 'Lunes';
-        };
+        
 
         console.log(array)
         const cards = document.createElement('div');
         cards.classList.add('conteinerCards')
         cards.innerHTML = `
-            <span><strong>${array.days[i].date} - ${dias}</strong></span>
+            <span><strong>${array.days[i].date}</strong></span>
             <span>${array.days[i].text}</span>
+            <img src=${`https://v5i.tutiempo.net/wi/01/40/${icono}.png`}>
         `;
         domDiv.appendChild(cards);
 
@@ -84,8 +75,9 @@ function cards (array) {
             const detalles = document.createElement('div');
             detalles.classList.add('detalles')
             detalles.innerHTML = `
-            <span><strong>${array.days[i].date} - ${dias}</strong></span>
+            <span><strong>${array.days[i].date}</strong></span>
             <span>${array.days[i].text}</span>
+            <img src=${`https://v5i.tutiempo.net/wi/01/40/${icono}.png`}>
             <span>Max ${array.days[i].temperature_max}ºC</span>
             <span>Min ${array.days[i].temperature_min}ºC</span>
             <span>Hd ${array.days[i].humidity}%</span>
