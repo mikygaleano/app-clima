@@ -44,13 +44,13 @@ function info (data) {
     );
     
 
-    cards(array)
+    contenido(array)
     
 };
 
 
 
-function cards (array) {
+function contenido (array) {
     const frag = document.createDocumentFragment();
     const domDiv = document.querySelector('.mini-cards-conteiners');
     let icono = array.days[1].icon;
@@ -73,15 +73,15 @@ function cards (array) {
                 <span>${array.days[1].text}</span>
             </div>
         </main>
-        <div><h2>Pronóstico par los proximos 7 días</h2></div>
+        <div><h2>Pronóstico par los proximos 6 días</h2></div>
         `;
 
         detalles.innerHTML = '';
 
-    for (let i = 0; i <= 6; i++) {
+    for (let i = 1; i <= 6; i++) {
         
-        icono = array.days[i].icon;
         const card = document.createElement('div');
+        card.classList.add('card')
         const detallesConteiner = document.createElement('section'); 
         
 
@@ -89,7 +89,6 @@ function cards (array) {
         domDiv.appendChild(detallesConteiner);
 
 
-        console.log(array)
         cardConteiner.classList.add('conteinerCards')
         card.innerHTML = `
             <h3><strong>${array.days[i].date}</strong></h3>
@@ -100,11 +99,12 @@ function cards (array) {
 
         card.addEventListener('click', ()=> {  
             detalles.classList.add('detalles');
+            
 
             detalles.innerHTML = `
             <span><strong>${array.days[i].date}</strong></span>
             <span>${array.days[i].text}</span>
-            <img src=${`https://v5i.tutiempo.net/wi/01/40/${icono}.png`}>
+            <img src=${`https://v5i.tutiempo.net/wi/01/40/${array.days[i].icon}.png`}>
             <span>Max ${array.days[i].temperature_max}ºC</span>
             <span>Min ${array.days[i].temperature_min}ºC</span>
             <span>Hd ${array.days[i].humidity}%</span>
@@ -117,8 +117,31 @@ function cards (array) {
     frag.append(home, cardConteiner);
 
     domDiv.append(frag);
+
 };
 
+function modoOscuro () {
+    const dataDark = document.querySelectorAll('[data-dark]');
+
+    document.addEventListener('click', (e)=> {
+    let btnModDark = document.querySelector('.btnDark');
+        if (e.target.matches('.btnDark')) {
+            if (btnModDark.textContent === '🌚') {
+                btnModDark.textContent = '🌞'
+                dataDark.forEach(el => {
+                    el.classList.add('togleDark');
+                })
+            } else {
+                btnModDark.textContent = '🌚'
+                dataDark.forEach(el => {
+                    el.classList.remove('togleDark');
+                })
+            }
+        }
+    })
+}
+
 document.addEventListener('DOMContentLoaded', ()=> {
+    modoOscuro();
     localizacion();
 });
