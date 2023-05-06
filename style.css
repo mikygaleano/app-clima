@@ -1,10 +1,8 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: antiquewhite;
-}
-main {
     width: 100%;
+    background-color: antiquewhite;
 }
 
 img {
