@@ -61,19 +61,21 @@ function contenido (array) {
     const home = document.createElement('div');
     home.classList.add('home');
     home.innerHTML = `<div class="home-title">
-            <h1>📍🌍 ${array.city} (${array.country})</h1>
-        </div>
-        <main class="principal">
-            <div>
-                <img src=${`https://v5i.tutiempo.net/wi/01/40/${icono}.png`}>
-            </div>
-            <div>
-                <span>Max ${array.days[1].temperature_max}ºC</span>
-                <span>Min ${array.days[1].temperature_min}ºC</span>
-                <span>${array.days[1].text}</span>
-            </div>
-        </main>
-        <div><h2>Pronóstico par los proximos 6 días</h2></div>
+                            <h1>📍🌍 ${array.city} (${array.country})</h1>
+                    </div>
+                        <main class="principal">
+                            <div>
+                                <img src=${`https://v5i.tutiempo.net/wi/01/40/${icono}.png`}>
+                            </div>
+                            <div>
+                                <span>Max ${array.days[1].temperature_max}Cº</span>
+                                <span>Min ${array.days[1].temperature_min}Cº</span>
+                                <span>${array.days[1].text}</span>
+                                <span>Hd ${array.days[1].humidity}%</span>
+                                <span>${array.days[1].wind} km/h ${array.days[1].wind_direction}</span>    
+                            </div>
+                        </main>
+                    <div><h2>Pronóstico par los proximos 6 días</h2></div>
         `;
 
         detalles.innerHTML = '';
@@ -92,8 +94,8 @@ function contenido (array) {
         cardConteiner.classList.add('conteinerCards')
         card.innerHTML = `
             <h3><strong>${array.days[i].date}</strong></h3>
-            <span>Max ${array.days[i].temperature_max}ºC</span>
-            <span>Min ${array.days[i].temperature_min}ºC</span>
+            <span>Max ${array.days[i].temperature_max}Cº</span>
+            <span>Min ${array.days[i].temperature_min}Cº</span>
         `;
         cardConteiner.appendChild(card);
 
@@ -105,8 +107,8 @@ function contenido (array) {
             <span><strong>${array.days[i].date}</strong></span>
             <span>${array.days[i].text}</span>
             <img src=${`https://v5i.tutiempo.net/wi/01/40/${array.days[i].icon}.png`}>
-            <span>Max ${array.days[i].temperature_max}ºC</span>
-            <span>Min ${array.days[i].temperature_min}ºC</span>
+            <span>Max ${array.days[i].temperature_max}Cº</span>
+            <span>Min ${array.days[i].temperature_min}Cº</span>
             <span>Hd ${array.days[i].humidity}%</span>
             <span>Viento ${array.days[i].wind} km/h con dirección ${array.days[i].wind_direction}</span>
             `;
