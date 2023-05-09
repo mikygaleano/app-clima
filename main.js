@@ -61,7 +61,7 @@ function contenido (array) {
     const home = document.createElement('div');
     home.classList.add('home');
     home.innerHTML = `<div class="home-title">
-                            <h1>📍🌍 ${array.city} (${array.country})</h1>
+                            <h2>📍🌍 ${array.city} (${array.country})</h2>
                     </div>
                         <main class="principal">
                             <div>
@@ -85,6 +85,7 @@ function contenido (array) {
         const card = document.createElement('div');
         card.classList.add('card')
         const detallesConteiner = document.createElement('section'); 
+        detallesConteiner.classList.add('detallesConteiner');
         
 
         detallesConteiner.appendChild(detalles);
@@ -122,28 +123,33 @@ function contenido (array) {
 
 };
 
-function modoOscuro () {
-    const dataDark = document.querySelectorAll('[data-dark]');
-
-    document.addEventListener('click', (e)=> {
+function toggleDark (e) {
     let btnModDark = document.querySelector('.btnDark');
+    const dataDark = document.querySelectorAll('[data-dark]');
         if (e.target.matches('.btnDark')) {
             if (btnModDark.textContent === '🌚') {
                 btnModDark.textContent = '🌞'
                 dataDark.forEach(el => {
                     el.classList.add('togleDark');
-                })
+                });
             } else {
                 btnModDark.textContent = '🌚'
                 dataDark.forEach(el => {
                     el.classList.remove('togleDark');
-                })
+                });
             }
         }
-    })
 }
 
+function modoOscuro () {
+    document.addEventListener('click', (e)=> {
+        toggleDark(e);
+    })
+};
+
+
 document.addEventListener('DOMContentLoaded', ()=> {
-    modoOscuro();
     localizacion();
+    modoOscuro();
 });
+

@@ -8,11 +8,17 @@ body {
 img {
     width: 100px;
 }
+
+header {
+    text-align: center;
+}
+
 .section-mini-cards {
     width: 80%;
     height: fit-content;
     display: grid;
     align-items: center;
+    justify-content: center;
     padding: 2rem;
 }
 
@@ -59,15 +65,26 @@ img {
 
 .conteinerCards {
     width: 100%;
+    height: fit-content;
     display: flex;
     align-items: center;
+    justify-content: center;
     text-align: center;
     margin: auto 0 auto 2rem;
 }
 
 .card {
     display: block;
-    margin: .5rem;
+    margin: auto;
+    padding: .5rem;
+    box-shadow: 1px 1px 1px 1px rgb(108, 107, 107);
+}
+
+.detallesConteiner {
+    width: 100%;
+    height: fit-content;
+    display: block;
+    margin: 2rem 2rem auto;
 }
 
 .detalles {
@@ -75,17 +92,8 @@ img {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     margin: 2rem auto;
-}
-
-footer {
-    width: 100%;
-    height: fit-content;
-    text-align: center;
-    margin: auto;
-    position: relative;
-    bottom: 0;
-    padding-top: 1rem;
 }
 
 button {
@@ -110,7 +118,7 @@ button {
         width: 90%;
         margin: auto;
     }
-    footer {
-        position: static;
+    .detallesConteiner {
+        margin: auto;
     }
 }
